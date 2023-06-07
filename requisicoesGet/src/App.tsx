@@ -8,6 +8,7 @@ const App = () => {
   useEffect(() => {
     loadMovies();
   });
+  /*
   const loadMovies = () => {
     fetch("https://api.b7web.com.br/cinema/")
       .then((response) => {
@@ -17,6 +18,17 @@ const App = () => {
         setMovies(json);
       });
   };
+  */
+
+
+  const loadMovies = async () => {
+    const response = await fetch("https://api.b7web.com.br/cinema/");
+    const json = await response.json();
+    setMovies(json);
+
+    
+  };
+  
   return (
     // load filmes com onClick function loadMovies.
     <div>
@@ -24,7 +36,7 @@ const App = () => {
         Carregar Filmes
       </button> */}
       Total de Filmes: {movies.length}
-      <div className="grid grid-cols-6 gap-3">
+      <div className="grid grid-cols-4 gap-3">
         {movies.map((item, index) => (
           <div key={index}>
             <img src={item.avatar} className="w-32 block" />
